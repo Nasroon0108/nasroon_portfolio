@@ -7,6 +7,7 @@ export const profile = {
   linkedin: "https://linkedin.com/in/nasroon-fareeha",
   github: "https://github.com/Nasroon0108",
   availability: "Immediate · Remote & Hybrid",
+  photo: "/photo.jpg", // place your photo at public/photo.jpg
   summary:
     "Full-Stack Software Engineer and Computer Science graduate shipping production-ready systems end-to-end. I architect secure multi-tenant platforms with Laravel and React, and I build ML/NLP research on the side.",
   headline: [

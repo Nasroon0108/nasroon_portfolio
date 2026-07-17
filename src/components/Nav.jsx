@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { profile } from "../data";
 
 const links = [
   { id: "about", label: "About", n: "01" },

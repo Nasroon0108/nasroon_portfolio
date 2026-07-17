@@ -30,7 +30,17 @@ export default function Nav() {
         }`}
       >
         <div className="mx-auto max-w-[1400px] px-6 md:px-10 flex items-center justify-between h-16 md:h-20">
-          <a href="#top" className="flex items-center gap-2 group">
+          <a href="#top" className="flex items-center gap-2.5 group">
+            <span className="relative w-8 h-8 md:w-9 md:h-9 rounded-full overflow-hidden border border-line group-hover:border-accent transition-colors">
+              <img
+                src={profile.photo}
+                alt=""
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                }}
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all"
+              />
+            </span>
             <span className="font-serif italic text-xl md:text-2xl">Nasroon</span>
             <span className="text-accent">.</span>
           </a>

@@ -24,49 +24,77 @@ export default function About() {
       <div className="grid grid-cols-12 gap-8 lg:gap-14">
         {/* Portrait column */}
         <div className="col-span-12 md:col-span-5 lg:col-span-4">
-          <figure className="relative">
-            <div className="relative overflow-hidden bg-ink-2 border border-line aspect-[4/5]">
-              {/* Backdrop pattern in case image is transparent */}
-              <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
+          <figure className="relative group">
+            {/* Soft color glow behind the frame */}
+            <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-accent/25 via-accent-2/20 to-transparent blur-3xl opacity-70 group-hover:opacity-100 transition-opacity duration-700" />
 
-              {imgOk ? (
-                <img
-                  src={profile.photo}
-                  alt={`Portrait of ${profile.name}`}
-                  onError={() => setImgOk(false)}
-                  className="relative z-10 w-full h-full object-cover grayscale contrast-110 hover:grayscale-0 hover:contrast-100 transition-all duration-700 ease-out"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center p-6">
-                  <div className="font-serif italic text-7xl text-accent leading-none">
-                    N<span className="text-bone">F</span>
+            {/* Gradient border wrapper */}
+            <div className="relative rounded-[1.75rem] p-[1.5px] bg-gradient-to-br from-accent/60 via-bone/10 to-accent-2/50 shadow-2xl shadow-accent/10">
+              <div className="relative overflow-hidden rounded-[1.6rem] bg-ink-2 aspect-[4/5]">
+                {/* Backdrop pattern */}
+                <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
+
+                {imgOk ? (
+                  <>
+                    <img
+                      src={profile.photo}
+                      alt={`Portrait of ${profile.name}`}
+                      onError={() => setImgOk(false)}
+                      className="relative z-10 w-full h-full object-cover saturate-[0.85] contrast-105 transition-all duration-700 ease-out group-hover:saturate-125 group-hover:scale-[1.03]"
+                      loading="lazy"
+                    />
+
+                    {/* Warm color wash overlay */}
+                    <div
+                      className="absolute inset-0 z-20 pointer-events-none mix-blend-soft-light opacity-80 group-hover:opacity-40 transition-opacity duration-700"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, rgba(232,255,94,0.28) 0%, rgba(255,91,58,0.22) 45%, rgba(10,10,10,0) 80%)",
+                      }}
+                    />
+
+                    {/* Bottom vignette fade */}
+                    <div className="absolute inset-x-0 bottom-0 h-1/3 z-20 pointer-events-none bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
+                  </>
+                ) : (
+                  <div className="relative z-10 w-full h-full flex flex-col items-center justify-center text-center p-6">
+                    <div className="font-serif italic text-7xl text-accent leading-none">
+                      N<span className="text-bone">F</span>
+                    </div>
+                    <div className="mt-6 font-mono text-[10px] uppercase tracking-widest text-muted max-w-[220px]">
+                      Add your photo at{" "}
+                      <span className="text-bone">public/photo.jpg</span> to
+                      replace this placeholder
+                    </div>
                   </div>
-                  <div className="mt-6 font-mono text-[10px] uppercase tracking-widest text-muted max-w-[220px]">
-                    Add your photo at{" "}
-                    <span className="text-bone">public/photo.jpg</span> to
-                    replace this placeholder
-                  </div>
+                )}
+
+                {/* Corner ticks */}
+                <span className="absolute top-4 left-4 w-3 h-3 border-t border-l border-bone/50 z-30" />
+                <span className="absolute top-4 right-4 w-3 h-3 border-t border-r border-bone/50 z-30" />
+                <span className="absolute bottom-4 left-4 w-3 h-3 border-b border-l border-bone/50 z-30" />
+                <span className="absolute bottom-4 right-4 w-3 h-3 border-b border-r border-bone/50 z-30" />
+
+                {/* Frame index */}
+                <div className="absolute top-4 left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-[0.25em] text-bone/80 z-30">
+                  FRAME · 001
                 </div>
-              )}
 
-              {/* Corner ticks */}
-              <span className="absolute top-3 left-3 w-3 h-3 border-t border-l border-bone/40" />
-              <span className="absolute top-3 right-3 w-3 h-3 border-t border-r border-bone/40" />
-              <span className="absolute bottom-3 left-3 w-3 h-3 border-b border-l border-bone/40" />
-              <span className="absolute bottom-3 right-3 w-3 h-3 border-b border-r border-bone/40" />
-
-              {/* Frame index */}
-              <div className="absolute top-3 left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-widest text-bone/70">
-                FRAME · 001
+                {/* Signature chip */}
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2 px-3 py-1 rounded-full backdrop-blur-md bg-ink/40 border border-bone/15">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                  <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-bone/85">
+                    On the record
+                  </span>
+                </div>
               </div>
             </div>
 
             {/* Caption strip */}
-            <figcaption className="mt-4 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-muted">
+            <figcaption className="mt-5 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-muted">
               <span>{profile.name}</span>
               <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                 {profile.location}
               </span>
             </figcaption>
